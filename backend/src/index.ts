@@ -1,10 +1,6 @@
 import { Elysia } from 'elysia'
-import { playgroundRouter } from './playgroundRouter.js'
 
 const app = new Elysia()
-
-// Mount playground router
-app.use(playgroundRouter)
 
 app.get('/api/projects', async (c: any) => {
   const username = process.env.GITHUB_USERNAME || 'YOUR_GITHUB_USERNAME'
@@ -59,45 +55,6 @@ app.post('/api/playground/chat', async (c: any) => {
 
   return new Response(stream, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
 })
-
-type ChatRole = 'system' | 'user' | 'assistant'
-type ChatMessage = { role: ChatRole; content: string }
-
-const NVIDIA_API_URL = process.env.NVIDIA_API_URL || 'https://integrate.api.nvidia.com/v1'
-const NVIDIA_MODEL = process.env.NVIDIA_MODEL || 'z-ai/glm-5.1'
-const NVIDIA_API_KEY = process.env.NVIDIA_API_KEY || process.env.ZAI_API_KEY
-
-const MODE_SYSTEM_PROMPTS: Record<string, string> = {
-  explorer:
-    'You are an interactive portfolio assistant. Be concise, creative, and useful. Respond in Indonesian unless the user asks otherwise. Help the user explore ideas, ask clarifying questions when needed, and provide examples that are easy to follow.',
-  builder:
-    'You are a product and code builder. Turn rough ideas into concrete steps, UI suggestions, and implementation guidance. Prefer short headings, numbered steps, and practical examples. Respond in Indonesian unless the user asks otherwise.',
-  critic:
-    'You are a sharp code reviewer and UX critic. Be direct, specific, and actionable. Point out risks, bugs, missing details, and better alternatives. Respond in Indonesian unless the user asks otherwise.',
-  brainstorm:
-    'You are a creative brainstorming partner. Generate interesting, surprising, and useful variations. Offer multiple directions, labels, and interaction ideas. Respond in Indonesian unless the user asks otherwise.'
-}
-
-async function readJsonBody(req: any) {
-  return await new Promise<any>((resolve) => {
-    let body = ''
-    req.on('data', (chunk: Buffer) => {
-      body += chunk.toString()
-    })
-    req.on('end', () => {
-      if (!body) {
-        resolve(null)
-        return
-      }
-
-      try {
-        resolve(JSON.parse(body))
-      } catch {
-        resolve(null)
-      }
-    })
-  })
-}
 
 const port = Number(process.env.PORT || 3001)
 
@@ -325,105 +282,6 @@ const server = http.createServer(async (req, res) => {
           res.end(JSON.stringify({ error: e.message }))
         }
       })
-      return
-    }
-
-    // Route: POST /api/llm/chat
-    if (pathname === '/api/llm/chat' && req.method === 'POST') {
-      const payload = await readJsonBody(req)
-      const messages = Array.isArray(payload?.messages) ? payload.messages : []
-      const mode = typeof payload?.mode === 'string' ? payload.mode : 'explorer'
-      const systemPrompt = MODE_SYSTEM_PROMPTS[mode] || MODE_SYSTEM_PROMPTS.explorer
-
-      if (!NVIDIA_API_KEY) {
-        res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' })
-        res.end('Missing NVIDIA_API_KEY environment variable')
-        return
-      }
-
-      const upstreamBody = {
-        model: NVIDIA_MODEL,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...messages
-            .filter((message: any) => message && typeof message.role === 'string' && typeof message.content === 'string')
-            .map((message: any) => ({ role: message.role, content: message.content }))
-        ] as ChatMessage[],
-        temperature: 0.8,
-        top_p: 0.95,
-        max_tokens: 4096,
-        stream: true
-      }
-
-      const upstream = await fetch(`${NVIDIA_API_URL}/chat/completions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${NVIDIA_API_KEY}`
-        },
-        body: JSON.stringify(upstreamBody)
-      })
-
-      if (!upstream.ok || !upstream.body) {
-        const text = await upstream.text().catch(() => '')
-        res.writeHead(502, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ error: 'Upstream request failed', status: upstream.status, body: text }))
-        return
-      }
-
-      res.writeHead(200, {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'no-cache',
-        Connection: 'keep-alive'
-      })
-
-      const reader = upstream.body.getReader()
-      const decoder = new TextDecoder()
-      let buffer = ''
-
-      try {
-        while (true) {
-          const { value, done } = await reader.read()
-          if (done) break
-
-          buffer += decoder.decode(value, { stream: true })
-
-          let eventIndex = buffer.indexOf('\n\n')
-          while (eventIndex !== -1) {
-            const rawEvent = buffer.slice(0, eventIndex)
-            buffer = buffer.slice(eventIndex + 2)
-
-            const lines = rawEvent.split('\n')
-            for (const line of lines) {
-              if (!line.startsWith('data:')) continue
-
-              const data = line.slice(5).trim()
-              if (!data) continue
-              if (data === '[DONE]') {
-                res.end()
-                return
-              }
-
-              try {
-                const parsed = JSON.parse(data)
-                const content = parsed?.choices?.[0]?.delta?.content
-                if (typeof content === 'string' && content) {
-                  res.write(content)
-                }
-              } catch {
-                // Ignore malformed SSE fragments.
-              }
-            }
-
-            eventIndex = buffer.indexOf('\n\n')
-          }
-        }
-      } catch (error: any) {
-        res.write(`\n[stream_error] ${error?.message || 'Unknown error'}`)
-      } finally {
-        if (!res.writableEnded) res.end()
-      }
-
       return
     }
 

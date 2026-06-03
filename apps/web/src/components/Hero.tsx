@@ -59,7 +59,7 @@ export default function Hero() {
           <div class="rounded-xl bg-black/40 border border-white/10 p-5 backdrop-blur-sm">
             <h2 class="text-lg font-semibold mb-2">Web</h2>
             <p class="text-sm text-gray-300 leading-relaxed">
-              Astro, Solid, and backend integration with an emphasis on clean
+              Astro, Solid, and clean frontend integration with an emphasis on
               routing and maintainability.
             </p>
           </div>

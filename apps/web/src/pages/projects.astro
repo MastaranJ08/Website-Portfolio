@@ -1,8 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import LLMStudio from '../components/LLMStudio'
+import ProjectsGrid from '../components/ProjectsGrid'
 ---
 
 <BaseLayout title="Projects">
-  <LLMStudio client:load />
+  <section class="mx-auto max-w-6xl px-6 pt-12 md:px-8 lg:px-10">
+    <p class="text-xs uppercase tracking-[0.5em] text-white/45">Projects</p>
+    <h1 class="mt-4 font-display text-4xl text-white sm:text-6xl">Coming soon</h1>
+    <p class="mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:text-base">
+      Halaman ini masih saya siapkan. Sambil menunggu, kamu tetap bisa lihat project yang sudah ada di bawah.
+    </p>
+  </section>
+
+  <ProjectsGrid client:load />
 </BaseLayout>

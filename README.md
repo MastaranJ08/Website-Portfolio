@@ -1,27 +1,34 @@
 # Ultra-fast Portfolio Monorepo
 
-Monorepo combining an Astro + Solid frontend and a Bun + Elysia backend.
+Monorepo with an Astro + Solid frontend.
 
 Apps:
-- `apps/web` — Astro frontend with SolidJS, TailwindCSS, and motion animations.
-- `backend` — Bun runtime with ElysiaJS API endpoints (`/api/projects`, `/api/playground/chat`).
+- `apps/web` - Astro frontend with SolidJS, TailwindCSS, and motion animations.
 
-Quick dev:
+## Local dev
 
-1. Backend (requires Bun):
-
-   ```bash
-   cd backend
-   bun install
-   GITHUB_USERNAME=yourusername GITHUB_TOKEN=token bun run dev
-   ```
-
-2. Frontend:
+1. Install frontend deps:
 
    ```bash
    cd apps/web
    npm install
+   ```
+
+2. Run the site:
+
+   ```bash
    npm run dev
    ```
 
-You can configure `GITHUB_USERNAME` and optional `GITHUB_TOKEN` for GitHub API requests.
+## GitHub Pages deploy
+
+This repo is configured for free static deployment on GitHub Pages.
+
+1. Push to the `main` branch.
+2. In GitHub, enable `Settings > Pages > GitHub Actions`.
+3. The workflow at [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) will build and deploy automatically.
+
+## GitHub data
+
+The Projects page reads public repositories directly from GitHub using the browser.
+Set `PUBLIC_GITHUB_USERNAME` at build time if you want to override the default username.
