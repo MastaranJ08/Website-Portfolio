@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-backend",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run start",
+    "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "elysia": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

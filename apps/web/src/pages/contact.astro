@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+<BaseLayout title="Contact">
+  <section class="py-12">
+    <h1 class="text-3xl font-display mb-4">Contact</h1>
+    <div class="bg-slate-900 p-6 rounded-lg max-w-2xl">
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm text-gray-300">Name</label>
+          <input class="w-full mt-1 px-3 py-2 rounded bg-slate-800" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-300">Email</label>
+          <input class="w-full mt-1 px-3 py-2 rounded bg-slate-800" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-300">Message</label>
+          <textarea class="w-full mt-1 px-3 py-2 rounded bg-slate-800 h-28"></textarea>
+        </div>
+        <div class="flex justify-end">
+          <button class="px-4 py-2 bg-accent rounded">Send</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

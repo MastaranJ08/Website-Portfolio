@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg: #0b0b10;
+  --muted: #9ca3af;
+}
+
+body{ @apply bg-cyberbg text-slate-100 antialiased; }
+
+/* small helper */
+.container{ @apply max-w-6xl mx-auto px-6 }

@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+<BaseLayout title="About">
+  <section class="py-16 pointer-events-auto">
+    <!-- Hero Intro -->
+    <div class="mb-16">
+      <h1 class="text-5xl md:text-6xl font-display mb-8">About Me</h1>
+      <div class="max-w-3xl">
+        <p class="text-gray-200 text-lg leading-relaxed">
+          I am an Engineer specializing in <span class="text-accent font-semibold">Mobile App Development</span> and <span class="text-accent font-semibold">AI/ML Systems</span>, holding a Bachelor of Engineering in Information Technology from <span class="font-semibold">Universitas Esa Unggul</span> (GPA: 3.68). Highly trained through <span class="font-semibold">Bangkit Academy</span> (led by Google, GoTo, and Traveloka), I bridge the gap between intuitive mobile experiences using Jetpack Compose/Kotlin and full-stack web architectures with Laravel, powered by intelligent data models.
+        </p>
+      </div>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-display mb-8">Experience</h2>
+      <div class="max-w-3xl space-y-8">
+        <!-- Timeline Item 1 -->
+        <div class="relative pl-8 border-l-2 border-accent/40">
+          <div class="absolute -left-3.5 top-0 w-6 h-6 bg-accent rounded-full"></div>
+          <div class="bg-slate-900/50 p-6 rounded-lg backdrop-blur-sm">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+              <h3 class="text-xl font-semibold text-accent">Android Developer (Internship)</h3>
+              <span class="text-sm text-gray-400">Jun 2023 - Present</span>
+            </div>
+            <p class="text-gray-300 font-medium mb-3">Bangkit Academy</p>
+            <p class="text-gray-300 leading-relaxed">Building advanced mobile application architectures using Jetpack Compose, Kotlin Coroutines, asynchronous programming, concurrency, and industry-standard SOLID design principles.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="relative pl-8 border-l-2 border-accent/40">
+          <div class="absolute -left-3.5 top-0 w-6 h-6 bg-accent rounded-full"></div>
+          <div class="bg-slate-900/50 p-6 rounded-lg backdrop-blur-sm">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+              <h3 class="text-xl font-semibold text-accent">Full-Stack Web Developer (Part-Time)</h3>
+              <span class="text-sm text-gray-400">Feb 2022 - Present</span>
+            </div>
+            <p class="text-gray-300 font-medium mb-3">BuildWithAngga</p>
+            <p class="text-gray-300 leading-relaxed">Mastering end-to-end web architectures, routing, secure database migrations, and complex data relations using Laravel and MySQL.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Projects -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-display mb-8">Academic Projects</h2>
+      <div class="max-w-3xl grid grid-cols-1 gap-6">
+        <!-- Project 1 -->
+        <div class="bg-slate-900/50 p-6 rounded-lg backdrop-blur-sm border border-slate-800/50">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Differences between CNN and SVM models for Approaching Mango Leaf Diseases</h3>
+              <p class="text-sm text-gray-400">Mar 2023 - Jul 2023</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">Core Thesis/Research comparing deep learning Convolutional Neural Networks against Support Vector Machines using Python.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Python</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">CNN</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">SVM</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Machine Learning</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="bg-slate-900/50 p-6 rounded-lg backdrop-blur-sm border border-slate-800/50">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
+            <div>
+              <h3 class="text-xl font-semibold mb-2">SaBo (Smart Border Security)</h3>
+              <p class="text-sm text-gray-400">May 2023 - Jul 2023</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4">Mobile application integrated with Machine Learning models to secure borders by dynamically detecting unverified objects.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Kotlin</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Android</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Machine Learning</span>
+            <span class="px-3 py-1 text-xs rounded bg-slate-800 text-gray-200">Security</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Skills -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-display mb-8">Top Skills & Technologies</h2>
+      <div class="max-w-3xl flex flex-wrap gap-3">
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Kotlin</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Jetpack Compose</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Dart / Flutter</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Python</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Machine Learning</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Laravel</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">MySQL</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Figma</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Cybersecurity</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">SOLID Principles</span>
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-accent/20 to-purple-900/20 border border-accent/40 text-sm font-medium text-gray-100">Android Studio</span>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div>
+      <h2 class="text-3xl font-display mb-8">Education</h2>
+      <div class="max-w-3xl bg-slate-900/50 p-6 rounded-lg backdrop-blur-sm border border-slate-800/50">
+        <h3 class="text-xl font-semibold mb-2">Bachelor of Engineering - Information Technology</h3>
+        <p class="text-accent font-medium mb-2">Universitas Esa Unggul</p>
+        <p class="text-gray-300">GPA: <span class="font-semibold">3.68 / 4.0</span></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

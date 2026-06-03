@@ -1,0 +1,48 @@
+/* Neon tag */
+.neon {
+  color: #b9a3ff;
+  text-shadow: 0 0 6px rgba(124,58,237,0.7), 0 0 14px rgba(124,58,237,0.35);
+  transition: text-shadow 0.3s ease;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 4px rgba(124,58,237,0.25); }
+  50% { text-shadow: 0 0 12px rgba(124,58,237,0.7); }
+  100% { text-shadow: 0 0 4px rgba(124,58,237,0.25); }
+}
+
+.neon-anim { animation: glow 3s infinite ease-in-out; }
+
+/* ensure content stacks above canvas */
+.z-foreground { z-index: 10; position: relative }
+
+/* pointer-event helpers: container is non-interactive so children can opt-in */
+.pointer-container { pointer-events: none }
+.pointer-auto { pointer-events: auto }
+
+/* make canvas rendering crisp */
+canvas.fixed { display: block }
+
+/* subtle vignette */
+.vignette:after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 120px 24px rgba(0,0,0,0.35);
+}
+
+@keyframes step-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.step-pop {
+  animation: step-pop 320ms ease-out both;
+}

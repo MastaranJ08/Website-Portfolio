@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.cache/
+/.expo/
+/.temp/
+/.env
+/.env.local
+bun.lockb
+node_modules/
+packages/**/node_modules
+apps/web/dist
+backend/.build
