@@ -25,8 +25,9 @@ Apps:
 This repo is configured for free static deployment on GitHub Pages.
 
 1. Push to the `main` branch.
-2. In GitHub, enable `Settings > Pages > GitHub Actions`.
-3. The workflow at [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) will build and deploy automatically.
+2. In GitHub, set `Settings > Pages > Source` to `Deploy from a branch`.
+3. Select branch `gh-pages` and folder `/ (root)`.
+4. The workflow at [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) will build and publish automatically.
 
 ## GitHub data
 
